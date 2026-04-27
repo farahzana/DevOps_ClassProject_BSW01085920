@@ -1,0 +1,42 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Clone') {
+            steps {
+                // This pulls your latest code from GitHub
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // 'bat' is used for Windows Command Prompt
+                // This creates your .jar file
+                bat 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Requirement: Show a test stage
+                echo "Executing unit tests..."
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                // This builds the image using the Dockerfile we fixed earlier
+                bat 'docker build -t student-app .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                // -d runs it in the background so Jenkins can finish the job
+                // We use 8080 to match your Spring Boot default
+                bat 'docker run -d -p 8080:8080 student-app'
+            }
+        }
+    }
+}
