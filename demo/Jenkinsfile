@@ -39,7 +39,8 @@ pipeline {
             steps {
                 // -d runs it in the background so Jenkins can finish the job
                 // We use 8080 to match your Spring Boot default
-                bat 'docker run -d -p 8080:8080 student-app'
+                //bat 'docker run -d -p 8080:8080 student-app'
+                bat 'docker run -d -p 8081:8080 student-app'
             }
         }
     }
