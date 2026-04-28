@@ -29,7 +29,9 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // This builds the image using the Dockerfile we fixed earlier
-                bat 'docker build -t student-app .'
+                dir('demo') {
+                    bat 'docker build -t student-app .'
+                } 
             }
         }
 
