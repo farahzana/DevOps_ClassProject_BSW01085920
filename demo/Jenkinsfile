@@ -13,7 +13,10 @@ pipeline {
             steps {
                 // 'bat' is used for Windows Command Prompt
                 // This creates your .jar file
-                bat 'mvn clean package'
+                dir(demo) {
+                    bat 'mvn clean package'
+                }
+                
             }
         }
 
