@@ -16,7 +16,6 @@ pipeline {
                 dir(demo) {
                     bat 'mvn clean package'
                 }
-                
             }
         }
 
